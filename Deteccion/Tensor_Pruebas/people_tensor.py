@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import cv2
-import time
+#import time
 
 
 class DetectorAPI:
@@ -33,13 +33,13 @@ class DetectorAPI:
         # Expand dimensions since the trained_model expects images to have shape: [1, None, None, 3]
         image_np_expanded = np.expand_dims(image, axis=0)
         # Actual detection.
-        start_time = time.time()
+ #       start_time = time.time()
         (boxes, scores, classes, num) = self.sess.run(
             [self.detection_boxes, self.detection_scores, self.detection_classes, self.num_detections],
             feed_dict={self.image_tensor: image_np_expanded})
-        end_time = time.time()
+#       end_time = time.time()
 
-        print("Elapsed Time:", end_time-start_time)
+ #       print("Elapsed Time:", end_time-start_time)
 
         im_height, im_width,_ = image.shape
         boxes_list = [None for i in range(boxes.shape[1])]
@@ -56,10 +56,10 @@ class DetectorAPI:
         self.default_graph.close()
 
 if __name__ == "__main__":
-    model_path = '/home/sebastian/Documents/tensor_prueba/faster_rcnn_inception_v2_coco_2018_01_28/frozen_inference_graph.pb'
+    model_path = '/home/sebastian/Documents/Proyecto_Final/Proyecto_Final/Deteccion/Tensor_Pruebas/faster_rcnn_inception_v2_coco_2018_01_28/frozen_inference_graph.pb'
     odapi = DetectorAPI(path_to_ckpt=model_path)
     threshold = 0.7
-    cap = cv2.VideoCapture('/home/sebastian/Documents/tensor_prueba/lol1.mp4')
+    cap = cv2.VideoCapture('/home/sebastian/Documents/Proyecto_Final/Proyecto_Final/Deteccion/Tensor_Pruebas/lol1.mp4')
 
     while True:
         r, img = cap.read()
