@@ -56,7 +56,7 @@ class DetectorAPI:
         self.default_graph.close()
 
 if __name__ == "__main__":
-    model_path = '/home/sebastian/Documents/Proyecto_Final/Proyecto_Final/Deteccion/Tensor_Pruebas/faster_rcnn_inception_v2_coco_2018_01_28/frozen_inference_graph.pb'
+    model_path = '/home/sebastian/Documents/Proyecto_Final/Proyecto_Final/Deteccion/Tensor_Pruebas/ssd_mobilenet_v1_coco_2017_11_17/frozen_inference_graph.pb'
     odapi = DetectorAPI(path_to_ckpt=model_path)
     threshold = 0.7
     cap = cv2.VideoCapture('/home/sebastian/Documents/Proyecto_Final/Proyecto_Final/Deteccion/Tensor_Pruebas/lol1.mp4')
