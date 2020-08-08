@@ -4,7 +4,7 @@ import cv2
  
 # initialize the HOG descriptor/person detector
 hog = cv2.HOGDescriptor()
-hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+hog.setSVMDetector(cv2.HOGDescriptor_getDefaulttPeopleDetector())
 
 #cv2.startWindowThread()
 
