@@ -59,7 +59,7 @@ if __name__ == "__main__":
     model_path = '/home/sebastian/Documents/Proyecto_Final/Proyecto_Final/Deteccion/Tensor_Pruebas/ssdlite_mobilenet_v2_coco_2018_05_09/frozen_inference_graph.pb'
     odapi = DetectorAPI(path_to_ckpt=model_path)
     threshold = 0.7
-    cap = cv2.VideoCapture(0)#'/home/sebastian/Documents/Proyecto_Final/Proyecto_Final/Deteccion/Tensor_Pruebas/lol1.mp4')
+    cap = cv2.VideoCapture('/home/sebastian/Documents/Proyecto_Final/Proyecto_Final/Deteccion/Tensor_Pruebas/lol1.mp4')
 
     while True:
         r, img = cap.read()
