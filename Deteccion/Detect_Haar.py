@@ -3,10 +3,12 @@
 
 import cv2
 
-cap = cv2.VideoCapture("B.mp4")
+cap = cv2.VideoCapture(0)
 # Create the haar cascade
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-fullbodyCascade = cv2.CascadeClassifier("haarcascade_lowerbody.xml")
+fullbodyCascade = cv2.CascadeClassifier("haarcascade_fullbody.xml")
+upperbodyCascade = cv2.CascadeClassifier("haarcascade_upperbody.xml")
+
 
 while(True):
 	# Capture frame-by-frame
@@ -19,26 +21,40 @@ while(True):
 	# Detect faces in the image
 	faces = faceCascade.detectMultiScale(
 		gray,
-		scaleFactor=1.1,
-		minNeighbors=5,
+		scaleFactor=1.25,
+		minNeighbors=4,
 		minSize=(30, 30)
 		#flags = cv2.CV_HAAR_SCALE_IMAGE
 	)
 
-	bodies = fullbodyCascade.detectMultiScale(
+	fullbodies = fullbodyCascade.detectMultiScale(
 		gray,
-		scaleFactor=1.1,
-		minNeighbors=5,
+		scaleFactor=1.25,
+		minNeighbors=4,
 		minSize=(30, 30)
 		#flags = cv2.CV_HAAR_SCALE_IMAGE
 	)
+
+	upperbodies = upperbodyCascade.detectMultiScale(
+		gray,
+		scaleFactor=1.25,
+		minNeighbors=4,
+		minSize=(30, 30)
+		#flags = cv2.CV_HAAR_SCALE_IMAGE
+	)
+
+	#print("Found {0} faces!".format(len(faces)))
 
 	# Draw a rectangle around the faces
 	for (x, y, w, h) in faces:
 		cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-# Draw a rectangle around the faces
-	for (x, y, w, h) in bodies:
+	# Draw a rectangle around the fullbody
+	for (x, y, w, h) in fullbodies:
+		cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+	# Draw a rectangle around the upperbody
+	for (x, y, w, h) in upperbodies:
 		cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
 
