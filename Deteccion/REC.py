@@ -68,7 +68,7 @@ while(True):
 	
 	if cont1>0 or cont2>0 or cont3>0 :
 		stime+=1
-		if stime>30:
+		if stime>15:
 			f= open("Movimiento.txt","w+")
 			f.write("Hay una nueva detección")
 			f.close() 
@@ -78,7 +78,7 @@ while(True):
 			
 	else:
 		NotDe+=1
-		if NotDe > 100:
+		if NotDe > 80:
 			f= open("Movimiento.txt","w+")
 			f.write("No hay nuevas detecciones")
 			f.close() 
