@@ -9,6 +9,8 @@ faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 fullbodyCascade = cv2.CascadeClassifier("haarcascade_fullbody.xml")
 upperbodyCascade = cv2.CascadeClassifier("haarcascade_upperbody.xml")
 
+stime=0
+NotDe=0
 
 while(True):
 	# Capture frame-by-frame
@@ -57,7 +59,30 @@ while(True):
 	for (x, y, w, h) in upperbodies:
 		cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
+	cont1=len(faces)
+	cont2=len(fullbodies)
+	cont3=len(upperbodies)
 
+
+
+	
+	if cont1>0 or cont2>0 or cont3>0 :
+		stime+=1
+		if stime>30:
+			f= open("Movimiento.txt","w+")
+			f.write("Hay una nueva detección")
+			f.close() 
+			#print("Movimiento detectado")
+			stime=0			
+				
+			
+	else:
+		NotDe+=1
+		if NotDe > 100:
+			f= open("Movimiento.txt","w+")
+			f.write("No hay nuevas detecciones")
+			f.close() 
+			NotDe=0
 
 	# Display the resulting frame
 	cv2.imshow('frame', frame)
