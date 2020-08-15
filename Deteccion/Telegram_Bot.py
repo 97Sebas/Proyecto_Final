@@ -1,4 +1,5 @@
 import requests
+import paramiko
 
 def telegram_bot_sendtext(bot_message):
 	
@@ -10,9 +11,14 @@ def telegram_bot_sendtext(bot_message):
 
    return response.json()
 	
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect(hostname='192.168.1.7',username='root',password='1234',port=22)
+sftp_client=ssh.open_sftp()
 
 while True:
-	f=open("Mov.txt", "r")
+    sftp_client.get('/home/root/Movimiento.txt','Movimiento.txt')
+	f=open("Movimiento.txt", "r")
 	valor=f.readline()
 	#valor="1"
 	f.close()
@@ -21,3 +27,5 @@ while True:
 		test = telegram_bot_sendtext("Se ha detectado presencia en la zona de las dos rocas.")
 		print(test)
 
+sftp_client.close()
+ssh.close()
