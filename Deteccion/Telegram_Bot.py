@@ -26,6 +26,12 @@ while True:
 	if (valor=="1"):
 		test = telegram_bot_sendtext("Se ha detectado presencia en la zona de las dos rocas.")
 		print(test)
+		
+		sftp_client.get('/home/root/Movimiento.txt','Movimiento.txt')
+		f=open("Movimiento.txt", "r")
+		valor=f.readline()
+		f.close()
+		time.sleep(30)
 
 sftp_client.close()
 ssh.close()
