@@ -15,7 +15,7 @@ NotDe=0
 while(True):
 	# Capture frame-by-frame
 	ret, frame = cap.read()
-	frame = cv2.resize(frame, (320, 240))  
+	frame = cv2.resize(frame, (144, 256))  
 
 	# Our operations on the frame come here
 	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -68,9 +68,9 @@ while(True):
 	
 	if cont1>0 or cont2>0 or cont3>0 :
 		stime+=1
-		if stime>30:
+		if stime>2:
 			f= open("Movimiento.txt","w+")
-			f.write("Hay una nueva detección")
+			f.write("1")
 			f.close() 
 			#print("Movimiento detectado")
 			stime=0			
@@ -80,7 +80,7 @@ while(True):
 		NotDe+=1
 		if NotDe > 100:
 			f= open("Movimiento.txt","w+")
-			f.write("No hay nuevas detecciones")
+			f.write("0")
 			f.close() 
 			NotDe=0
 
